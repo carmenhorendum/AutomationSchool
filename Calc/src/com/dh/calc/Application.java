@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Application {
 	public static void main(String[] args) {
 
-		int a,b,sum,dif,mlt,div;
+		double a,b,sum,dif,mlt,div;
 		String aa,bb;
 		String op = "run";
 		String regex = "-?[0-9]\\d*(\\.\\d+)?";
@@ -53,7 +53,7 @@ public class Application {
 
 				} else {
 
-					a = Integer.parseInt(aa);
+					a = Double.parseDouble(aa);
 //					System.out.println(a);
 
 					System.out.print("Second number:" + " ");
@@ -66,7 +66,7 @@ public class Application {
 
 					} else {
 
-						b = Integer.parseInt(bb);
+						b = Double.parseDouble(bb);
 //						System.out.println(b);
 
 						sum = a+b;
@@ -88,7 +88,7 @@ public class Application {
 
 				} else {
 
-					a = Integer.parseInt(aa);
+					a = Double.parseDouble(aa);
 
 					System.out.print("Second number:" + " ");
 					bb = input.next();
@@ -99,7 +99,7 @@ public class Application {
 
 					} else {
 
-						b = Integer.parseInt(bb);
+						b = Double.parseDouble(bb);
 
 						dif = a-b;
 						System.out.println("----------------------");
@@ -120,7 +120,7 @@ public class Application {
 
 				} else {
 
-					a = Integer.parseInt(aa);
+					a = Double.parseDouble(aa);
 
 					System.out.print("Second number:" + " ");
 					bb = input.next();
@@ -131,7 +131,7 @@ public class Application {
 
 					} else {
 
-						b = Integer.parseInt(bb);
+						b = Double.parseDouble(bb);
 
 						mlt = a*b;
 						System.out.println("----------------------");
@@ -152,7 +152,7 @@ public class Application {
 
 				} else {
 
-					a = Integer.parseInt(aa);
+					a = Double.parseDouble(aa);
 
 					System.out.print("Second number:" + " ");
 					bb = input.next();
@@ -163,7 +163,7 @@ public class Application {
 
 					} else {
 
-						b = Integer.parseInt(bb);
+						b = Double.parseDouble(bb);
 
 						if (b == 0) {
 
