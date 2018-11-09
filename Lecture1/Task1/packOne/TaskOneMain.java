@@ -7,31 +7,49 @@ public class TaskOneMain {
 		System.out.println("Type in any sentence: ");
 		Scanner input = new Scanner(System.in);
 		String string = input.nextLine().trim();
-		String newString = string;
-		String search = " ";
-		String result;
-		int i;
+		printEmptyLine();
+		printOriginal(string);
+		printEmptyLine();
+		doReversed(string);
+		printEmptyLine();
+		doSplitString(string);
+		printEmptyLine();
+		doReplaceSpaces(string);
+		printEmptyLine();
+		doAllCaps(string);
+		printEmptyLine();
+		doSubstring(string);
+	}
+
+	private static void printEmptyLine() {
+		System.out.println();
+	}
+
+	private static void printOriginal(String string) {
+		System.out.println(String.format("Original: %s", string));
+	}
+
+	private static void doReversed(String string) {
 		StringBuffer stringBuffer = new StringBuffer(string);
-		System.out.println();
-		System.out.println("Original: "+ string);
-		System.out.println();
-		System.out.println("Reversed: "+stringBuffer.reverse());
-		System.out.println();
+		System.out.println(String.format("Reversed: %s", stringBuffer.reverse()));
+	}
+
+	private static void doSplitString(String string) {
+		String[] parts = string.split(" ", -5);
 		System.out.println("One line - one word: ");
-		do {
-			i = newString.indexOf(search);
-			if (i != -1){
-				result = newString.substring(0,i);
-				System.out.println(result);
-				newString = newString.substring(i + search.length());
-			}
-		} while (i != -1);
-		System.out.println(newString);
-		System.out.println();
-		System.out.println("Spaces to Asterisks: "+ string.replace(' ', '*'));
-		System.out.println();
-		System.out.println("To Upper Case: "+ string.toUpperCase());
-		System.out.println();
-		System.out.println("Substring 5 to 10 (included): "+ string.substring(4,10));
+		for (String out : parts)
+		System.out.println(out);
+	}
+
+	private static void doReplaceSpaces(String string) {
+		System.out.println(String.format("Spaces to Asterisks: %s", string.replace(' ', '*')));
+	}
+
+	private static void doAllCaps(String string) {
+		System.out.println(String.format("To Upper Case: %s", string.toUpperCase()));
+	}
+
+	private static void doSubstring(String string) {
+		System.out.println(String.format("Substring 5 to 10 (included): %s", string.substring(4,10)));
 	}
 }
