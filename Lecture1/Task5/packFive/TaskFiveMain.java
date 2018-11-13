@@ -10,15 +10,14 @@ public class TaskFiveMain {
 		String mask = "****** *****";
 		char[] answerArray = answer.toUpperCase().toCharArray();
 		StringBuffer guessed = new StringBuffer(mask);
-		Set picked = new HashSet();
+		Set<String> picked = new HashSet();
 		while (!mask.equals(answer)) {
 			System.out.println();
 			System.out.println(String.format("\nMake your guess: %s. You can enter a letter or a word.", mask));
 			Scanner input = new Scanner(System.in);
 			String guess = input.nextLine().toUpperCase();
-			int caseId = 0;
 			if (picked.contains(guess)) {
-				getRepeated(picked, guess);
+				printRepeated(picked, guess);
 			} else {
 				if (guess.length() == 1) {
 					boolean flag = false;
@@ -30,9 +29,9 @@ public class TaskFiveMain {
 						}
 					}
 					if (flag == false) {
-						getBadGuess(picked, guess, guessed);
+						printBadGuess(picked, guess, guessed);
 					} else {
-						getGoodGuess(picked, guess, guessed);
+						printGoodGuess(picked, guess, guessed);
 					}
 				} else {
 					if (answer.toUpperCase().contains(guess)) {
@@ -40,32 +39,32 @@ public class TaskFiveMain {
 						guessed.replace(startIndex,startIndex + guess.length(),
 								answer.substring(startIndex, startIndex + guess.length()));
 						mask = guessed.toString();
-						getGoodGuess(picked, guess, guessed);
+						printGoodGuess(picked, guess, guessed);
 					} else {
-						getBadGuess(picked, guess, guessed);
+						printBadGuess(picked, guess, guessed);
 					}
 				}
 			}
 		}
-		getWin(answer);
+		printWin(answer);
 	}
 
-	private static void getBadGuess(Set picked, String guess, StringBuffer guessed) {
+	private static void printBadGuess(Set picked, String guess, StringBuffer guessed) {
 		picked.add(guess);
 		System.out.println(String.format("Bad guess: %s doesn't belong to %s!", guess, guessed));
 	}
 
-	private static void getGoodGuess(Set picked, String guess, StringBuffer guessed) {
+	private static void printGoodGuess(Set picked, String guess, StringBuffer guessed) {
 		picked.add(guess);
 		System.out.println(String.format("Good guess: %s belongs to %s!", guess, guessed));
 	}
 
-	private static void getRepeated(Set picked, String guess) {
+	private static void printRepeated(Set picked, String guess) {
 		picked.add(guess);
 		System.out.println(String.format("You've already picked %s! Try something different.", guess));
 	}
 
-	private static void getWin(String answer) {
+	private static void printWin(String answer) {
 		System.out.println(String.format("\nYou win! Correct answer is: %s", answer));
 	}
 }
