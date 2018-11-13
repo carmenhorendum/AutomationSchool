@@ -23,16 +23,20 @@ public class TaskFourMain {
 						valueByIndex.getName(), valueByIndex.getTime(), valueByIndex.getPlace()));
 		}
 		System.out.println(String.format("\nThe winner is: %s!", runners.get(0).getName()));
-		getInfoByPlace(runners);
+		printInfoByPlace(runners);
 	}
 	
-	private static void getInfoByPlace(List<Runner> runners) {
+	private static void printInfoByPlace(List<Runner> runners) {
 		System.out.println("\nEnter place to get runner info:");
 		Scanner input = new Scanner(System.in);
 		int anyPlace = input.nextInt();
 		int index = anyPlace - 1;
-		System.out.println(String.format("Place %d", anyPlace));
-		System.out.println(String.format("Name: %s, Time: %d",
+		if (index < 0 || index >= runners.size()) {
+            		System.out.println("This place doesn't exist!");
+		} else {
+			System.out.println(String.format("Place %d", anyPlace));
+			System.out.println(String.format("Name: %s, Time: %d",
 				runners.get(index).getName(), runners.get(index).getTime()));
+		}
 	}	
 }
