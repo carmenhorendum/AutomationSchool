@@ -1,6 +1,6 @@
 public class Student implements Comparable<Student> {
 
-	private int id, age;
+	private final int id, age;
 	private String name, lastName;
 
 	public Student(int id, int age, String name, String lastName) {
@@ -14,16 +14,8 @@ public class Student implements Comparable<Student> {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public int getAge() {
 		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
 	}
 
 	public String getName() {
@@ -45,4 +37,14 @@ public class Student implements Comparable<Student> {
 	public int compareTo(Student other) {
 		return(age - other.age);
 	}
+	
+	@Override
+    	public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", age=" + age +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }
