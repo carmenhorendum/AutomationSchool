@@ -5,8 +5,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class TaskThreeMain {
+	final static String FIRST_LETTER = "M";
+
 	public static void main(String[] args) {
-		final String FIRST_LETTER = "M";
 		List<Student> students = new ArrayList<>();
 
 		students.add(new Student(1, 60, "Rudolf", "Schenker"));
@@ -17,29 +18,23 @@ public class TaskThreeMain {
 
 		System.out.println("List sorted by Age:");
 		students = getSortByAge(students);
-		for (Student student : students) {
-			System.out.println(student.getAge() + " " + student.getName());
-		}
+        	students.forEach(System.out::println);
 
 		System.out.println(String.format("First letter of the name is %s:", FIRST_LETTER));
 		List<Student> studentsM = getStudentsM(students, FIRST_LETTER);
-		for (Student student : studentsM) {
-			System.out.println(student.getName());
-		}
+		studentsM.forEach(System.out::println);
 
 		System.out.println(String.format("Average age of students is:\n%s",
 				getAverageAge(students)));
 
 		System.out.println("Names from the Map:");
-		Map<Integer, Student> studentsMap = getStudentsListToMap(students);
-		for (Student key : studentsMap.values()) {
-			System.out.println(key.getId() + " " + key.getName());
-		}
+		Map<Integer, Student> studentsMap;
+        	getStudentsListToMap(students);
+        	students.forEach(System.out::println);
 
-		studentsMap = getMapAboveThree(students);
-		System.out.println("Names from the Map (id > 3):");
-		studentsMap.forEach((integer, student) ->
-				System.out.println(integer + " " + student.getName()));
+        	System.out.println("Names from the Map (id > 3):");
+        	studentsMap = getMapAboveThree(students);
+        	studentsMap.entrySet().forEach(System.out::println);
 	}
 
 	private static List<Student> getSortByAge(List<Student> students) {
