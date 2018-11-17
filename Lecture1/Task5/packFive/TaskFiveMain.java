@@ -6,61 +6,65 @@ import java.util.Set;
 
 public class TaskFiveMain {
 	public static void main(String[] args) {
-		String answer = "Дзяніс Голін";
+		String answer = "ДЗЯНІС ГОЛІН";
 		String mask = "****** *****";
-		char[] answerArray = answer.toLowerCase().toCharArray();
+		char[] answerArray = answer.toUpperCase().toCharArray();
 		StringBuffer guessed = new StringBuffer(mask);
-		Set picked = new HashSet();
+		Set<String> picked = new HashSet();
 		while (!mask.equals(answer)) {
-			System.out.println("Make your guess. You can enter a letter or a word:");
+			System.out.println();
+			System.out.println(String.format("\nMake your guess: %s. You can enter a letter or a word.", mask));
 			Scanner input = new Scanner(System.in);
-			String guess = input.nextLine().toLowerCase().trim();
-			int caseId = 0;
+			String guess = input.nextLine().toUpperCase();
 			if (picked.contains(guess)) {
-				caseId = 3;
+				printRepeated(picked, guess);
 			} else {
-//				if (guess.length()==1) {
+				if (guess.length() == 1) {
+					boolean flag = false;
 					for (int i = 0; i < answerArray.length; i++) {
-						System.out.println(answerArray[i]);
-						System.out.println(guess.charAt(0));
-						System.out.println();
-						if (answerArray[i]==guess.charAt(0)) {
-							caseId = 1;
-							guessed.replace(i,i+1,answer.substring(i,i+1));
+						if (answerArray[i] == guess.charAt(0)) {
+							guessed.replace(i, i + 1, answer.substring(i, i + 1));
 							mask = guessed.toString();
-						} else {
-							caseId = 2;
+							flag = true;
 						}
 					}
-//				} else {
-//					System.out.println(guess.length());
-//				}
+					if (flag == false) {
+						printBadGuess(picked, guess, guessed);
+					} else {
+						printGoodGuess(picked, guess, guessed);
+					}
+				} else {
+					if (answer.toUpperCase().contains(guess)) {
+						int startIndex = answer.toUpperCase().indexOf(guess);
+						guessed.replace(startIndex,startIndex + guess.length(),
+								answer.substring(startIndex, startIndex + guess.length()));
+						mask = guessed.toString();
+						printGoodGuess(picked, guess, guessed);
+					} else {
+						printBadGuess(picked, guess, guessed);
+					}
+				}
 			}
-			System.out.println(caseId);
-			switch (caseId) {
-				case 1:
-					picked.add(guess);
-					System.out.println(String.format("Success! %s",guessed));
-					break;
-				case 2:
-					picked.add(guess);
-					System.out.println(String.format("Wrong guess! %s doesn't belong to %s.",guess,guessed));
-					break;
-				case 3:
-					picked.add(guess);
-					System.out.println(String.format("You've already picked letter %s! Try another one.",guess));
-					break;
-				default:
-					mask = guessed.toString();
-					System.out.println();
-					System.out.println(String.format("You win! Correct answer is: %s",answer));
-					break;
-			}
-//			System.out.println(picked);
-//			System.out.println(picked.contains(guess));
-//			mask = guessed.toString();
-//			System.out.println();
-//			System.out.println(String.format("You win! Correct answer is: %s",answer));
 		}
+		printWin(answer);
+	}
+
+	private static void printBadGuess(Set picked, String guess, StringBuffer guessed) {
+		picked.add(guess);
+		System.out.println(String.format("Bad guess: %s doesn't belong to %s!", guess, guessed));
+	}
+
+	private static void printGoodGuess(Set picked, String guess, StringBuffer guessed) {
+		picked.add(guess);
+		System.out.println(String.format("Good guess: %s belongs to %s!", guess, guessed));
+	}
+
+	private static void printRepeated(Set picked, String guess) {
+		picked.add(guess);
+		System.out.println(String.format("You've already picked %s! Try something different.", guess));
+	}
+
+	private static void printWin(String answer) {
+		System.out.println(String.format("\nYou win! Correct answer is: %s", answer));
 	}
 }
