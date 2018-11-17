@@ -1,8 +1,10 @@
 import java.util.*;
 
 public class TaskTwoMain {
+	final static String FIRST_LETTER = "M";
+	private static double average;
+
 	public static void main(String[] args) {
-		final String FIRST_LETTER = "M";
 		List<Student> students = new ArrayList<>();
 
 		students.add(new Student(1, 60, "Rudolf", "Schenker"));
@@ -18,12 +20,8 @@ public class TaskTwoMain {
 		}
 
 		System.out.println(String.format("First letter of the name is %s:", FIRST_LETTER));
-		List<Student> studentsM = getStudentsM(students, FIRST_LETTER);
-		for (Student student : studentsM) {
-			System.out.println(student.getName());
-		}
+		Filter.getStudentsM(students, FIRST_LETTER);
 
-		double average = 0;
 		System.out.println(String.format("Average age of students is:\n%s",
 				getAvarageAge(average, students)));
 
@@ -41,16 +39,6 @@ public class TaskTwoMain {
 				System.out.println(key.getName());
 			}
 		}
-	}
-
-	private static List<Student> getStudentsM(List<Student> students, String FIRST_LETTER) {
-		List<Student> studentsM = new ArrayList<>();
-		for (Student student : students) {
-			if (student.getName().startsWith(FIRST_LETTER)) {
-				studentsM.add(student);
-			}
-		}
-		return studentsM;
 	}
 
 	private static double getAvarageAge(double average, List<Student> students) {
