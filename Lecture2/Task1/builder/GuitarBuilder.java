@@ -2,11 +2,10 @@ package builder;
 
 import product.Brand;
 
-public class GuitarBuilder {
+public abstract class GuitarBuilder {
 	Guitar guitar;
 
 	public void buildGuitar() {
-		this.guitar = new Guitar();
 	}
 
 	public void addBrand(Brand brand) {
