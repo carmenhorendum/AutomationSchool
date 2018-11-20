@@ -1,18 +1,9 @@
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class Filter {
-	public static void getStudentsM(List<Student> students, String FIRST_LETTER) {
-		List<Student> studentsM = new ArrayList<>();
-		for (Student student : students) {
-			if (student.getName().startsWith(FIRST_LETTER)) {
-				studentsM.add(student);
-				System.out.println(String.format("%d %s %s",
-						student.getId(),
-						student.getName(),
-						student.getLastName()
-				));
-			}
-		}
-	}
+public interface Filter {
+	List<Student> getStudentsM(List<Student> students);
+	double getAverageAge(List<Student> students);
+	Map<Integer, Student> getStudentsListToMap(List<Student> students);
+	Map<Integer, Student> getStudentMapAboveKey(List<Student> studentsMap);
 }
