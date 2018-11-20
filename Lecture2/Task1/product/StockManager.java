@@ -1,29 +1,17 @@
 package product;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class StockManager {
 
-	private enum Types {
-		ELECTRIC_GUITAR,
-		ELECTRIC_BASS,
-		JAZZ_GUITAR,
-		CLASSICAL_GUITAR
-	}
-
-	public static List<Product> getProductsToStock(List<Product> products) {
-		for (int i = 0; i < Types.values().length; i++) {
-			System.out.println(Types.values().length);
-			Random random = new Random();
-			int amount = random.nextInt(5);
-			products = ProductFactory.createProducts(products, amount, Types.ELECTRIC_GUITAR.toString());
-			amount = random.nextInt(5);
-			products = ProductFactory.createProducts(products, amount, Types.ELECTRIC_BASS.toString());
-			amount = random.nextInt(5);
-			products = ProductFactory.createProducts(products, amount, Types.JAZZ_GUITAR.toString());
-			amount = random.nextInt(5);
-			products = ProductFactory.createProducts(products, amount, Types.CLASSICAL_GUITAR.toString());
+	public static List<Product> getProductsToStock() {
+		List<Product> products = new ArrayList<>();
+		for (int i = 0; i < Type.values().length; i++) {
+			ProductFactory.createProducts(products, RandomUtils.getAmount(), Type.ELECTRIC_GUITAR);
+			ProductFactory.createProducts(products, RandomUtils.getAmount(), Type.ELECTRIC_BASS);
+			ProductFactory.createProducts(products, RandomUtils.getAmount(), Type.JAZZ_GUITAR);
+			ProductFactory.createProducts(products, RandomUtils.getAmount(), Type.CLASSICAL_GUITAR);
 		}
 		return products;
 	}
