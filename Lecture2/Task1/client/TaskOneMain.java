@@ -4,13 +4,11 @@ import product.Filter;
 import product.Product;
 import product.StockManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TaskOneMain {
 	public static void main(String[] args) {
-		List<Product> products = new ArrayList<>();
-		List<Product> newStock = StockManager.getProductsToStock(products);
+		List<Product> newStock = StockManager.getProductsToStock();
 		System.out.println(newStock);
 		System.out.println(newStock.size());
 		System.out.println(Filter.getStockPrice(newStock));
