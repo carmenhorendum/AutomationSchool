@@ -6,7 +6,7 @@ import product.StockManager;
 
 import java.util.List;
 
-public class TaskOneMain {
+public class Application {
     public static void main(String[] args) {
         List<Product> newStock = StockManager.getProductsToStock();
         System.out.println(newStock);
