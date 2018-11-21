@@ -1,4 +1,6 @@
-package product;
+package utils;
+
+import product.Type;
 
 import java.util.Random;
 

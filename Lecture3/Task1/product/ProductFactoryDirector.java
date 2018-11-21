@@ -4,6 +4,7 @@ import builder.AcousticGuitarBuilder;
 import builder.ElectricGuitarBuilder;
 import builder.Guitar;
 import builder.GuitarBuilderDirector;
+import utils.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.List;
