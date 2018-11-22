@@ -11,10 +11,16 @@ public class IOFileReader {
 			BufferedReader getInfo = new BufferedReader(new FileReader(listOfProducts));
 			String productInfo = getInfo.readLine();
 			while (productInfo != null) {
-				System.out.println(productInfo);
-				String[] singleProductData = productInfo.split(" ");
-				int productPrice = Integer.parseInt(singleProductData[2]);
-				System.out.print("Product" + singleProductData[0] + "is" + productPrice + "\n");
+				Pattern pattern = Pattern.compile("\\{([\\w\\W)])+}");
+				Matcher matcher = pattern.matcher(productInfo);
+				if (matcher.find()) {
+				    System.out.println("Guitar object: " + matcher.group(0));
+				}
+				pattern = Pattern.compile("\\w[A-Z]+");
+				matcher = pattern.matcher(productInfo);
+				if (matcher.find()) {
+				    System.out.println("Brand: " + matcher.group(0));
+				}
 				productInfo = getInfo.readLine();
 			}
 		} catch (FileNotFoundException e) {
