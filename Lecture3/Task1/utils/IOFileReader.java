@@ -1,12 +1,14 @@
 package utils;
 
 import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class IOFileReader {
 
 	public static void getFileInfo() {
-		System.out.println("Info Written to File\n");
-		File listOfProducts = new File("/Users/DzianisWin7/Documents/products.txt");
+		System.out.println("Info Written to File:");
+		File listOfProducts = new File("M://GitHub/products.txt");
 		try {
 			BufferedReader getInfo = new BufferedReader(new FileReader(listOfProducts));
 			String productInfo = getInfo.readLine();
@@ -14,12 +16,12 @@ public class IOFileReader {
 				Pattern pattern = Pattern.compile("\\{([\\w\\W)])+}");
 				Matcher matcher = pattern.matcher(productInfo);
 				if (matcher.find()) {
-				    System.out.println("Guitar object: " + matcher.group(0));
+					System.out.println("Guitar object: " + matcher.group(0));
 				}
 				pattern = Pattern.compile("\\w[A-Z]+");
 				matcher = pattern.matcher(productInfo);
 				if (matcher.find()) {
-				    System.out.println("Brand: " + matcher.group(0));
+					System.out.println("Brand: " + matcher.group(0));
 				}
 				productInfo = getInfo.readLine();
 			}
