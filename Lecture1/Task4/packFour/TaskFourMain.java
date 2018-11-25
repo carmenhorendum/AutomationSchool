@@ -38,5 +38,5 @@ public class TaskFourMain {
 			System.out.println(String.format("Name: %s, Time: %d",
 				runners.get(index).getName(), runners.get(index).getTime()));
 		}
-	}	
+	}
 }
