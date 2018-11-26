@@ -5,33 +5,24 @@ import product.Product;
 import product.StockManager;
 import utils.IOFileReader;
 import utils.IOFileWriter;
-import utils.OutputGenerator;
 
-import java.io.PrintWriter;
 import java.util.List;
 
 public class Application {
 	public static void main(String[] args) {
-		List<Product> newStock = StockManager.getProductsToStock();
-		System.out.println(newStock);
-		System.out.println(newStock.size());
-		PrintWriter productOutput = IOFileWriter.createFile("M://GitHub/products.txt");
-		for (Product product : newStock) {
-			OutputGenerator.createProducts(product, productOutput);
-		}
+		StockManager stockManager = new StockManager();
+		List<Product> consignment = stockManager.getConsignment();
+		System.out.println(consignment);
+		System.out.println(consignment.size());
+		IOFileWriter.storeProductsInFile(consignment);
+		IOFileReader.printFileInfo();
 		try {
-			productOutput.close();
-		} catch (NullPointerException e) {
-			System.out.println(e.getMessage());
-		}
-		IOFileReader.getFileInfo();
-		try {
-			System.out.println("Order total: $" + Filter.getStockPrice(newStock));
+			System.out.println("Order total: $" + Filter.getStockPrice(consignment));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(Filter.getSortByPrice(newStock));
-		System.out.println(Filter.getSortByStringsCount(newStock));
-		System.out.println(Filter.getProductByParameters(newStock));
+		System.out.println(Filter.getSortByPrice(consignment));
+		System.out.println(Filter.getSortByStringsCount(consignment));
+		System.out.println(Filter.getProductByParameters(consignment));
 	}
 }

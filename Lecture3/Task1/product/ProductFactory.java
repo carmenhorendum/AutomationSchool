@@ -2,13 +2,15 @@ package product;
 
 import builder.Guitar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductFactory {
 
-	public static List<Product> createProducts(List<Product> products) {
+	public static List<Product> createProducts() {
+		List<Product> products = new ArrayList<>();
 		try {
-			List<Guitar> guitars = ProductFactoryDirector.createGuitars();
+			List<Guitar> guitars = Stock.getGuitars();
 			for (Guitar guitar : guitars) {
 				Product pr = new Product(guitar);
 				switch (guitar.getBrand()) {
