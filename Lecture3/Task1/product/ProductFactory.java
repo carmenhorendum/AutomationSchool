@@ -7,10 +7,10 @@ import java.util.List;
 
 public class ProductFactory {
 
-	public static List<Product> createProducts() {
+	public static List<Product> createProducts(Stock stock, Type type, int amount) {
 		List<Product> products = new ArrayList<>();
 		try {
-			List<Guitar> guitars = Stock.getGuitars();
+			List<Guitar> guitars = stock.getGuitars();
 			for (Guitar guitar : guitars) {
 				Product pr = new Product(guitar);
 				switch (guitar.getBrand()) {

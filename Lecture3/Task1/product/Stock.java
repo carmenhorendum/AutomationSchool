@@ -1,21 +1,18 @@
 package product;
 
 import builder.Guitar;
-import exceptions.FailedOrderException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Stock {
-	private static List<Guitar> guitars;
-	private static List<Product> products;
+	private List<Guitar> guitars = new ArrayList<>();
 
-	public static List<Guitar> getGuitars() throws FailedOrderException {
-		guitars = StockManager.initStock();
-		return guitars;
+	public void addGuitars(List<Guitar> guitars) {
+		guitars.addAll(guitars);
 	}
 
-	public static List<Product> getProducts() {
-		products = StockManager.initProducts();
-		return products;
+	public List<Guitar> getGuitars() {
+		return guitars;
 	}
 }

@@ -1,24 +1,22 @@
 package product;
 
-import builder.Guitar;
-import exceptions.FailedOrderException;
+import utils.RandomUtils;
 
 import java.util.List;
 
 public class StockManager {
 
-	private static List<Guitar> guitars;
+	private Stock stock;
 
-	public static List<Guitar> initStock() throws FailedOrderException {
-		guitars = GuitarFactory.createGuitars();
-		return guitars;
+	public StockManager(Stock stock) {
+		this.stock = new Stock();
 	}
 
-	public static List<Product> initProducts() {
-		return ProductFactory.createProducts();
+	public void initStock() {
+		stock.addGuitars(GuitarFactory.createGuitars(RandomUtils.getAmount()));
 	}
 
-	public List<Product> getConsignment() {
-		return Stock.getProducts();
+	public List<Product> getConsignment(Type type, int amount) {
+		return ProductFactory.createProducts(stock, RandomUtils.getType(), RandomUtils.getAmount());
 	}
 }
