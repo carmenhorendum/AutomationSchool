@@ -9,7 +9,7 @@ public class Stock {
 	private List<Guitar> guitars = new ArrayList<>();
 
 	public void addGuitars(List<Guitar> guitars) {
-		guitars.addAll(guitars);
+		this.guitars.addAll(guitars);
 	}
 
 	public List<Guitar> getGuitars() {

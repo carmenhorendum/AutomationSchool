@@ -12,6 +12,7 @@ public class ElectricGuitar extends Guitar {
     }
 
     public void plug() {
+        System.out.println("Plugging to the amp...");
     }
 
     @Override

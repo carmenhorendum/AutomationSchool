@@ -3,6 +3,8 @@ package builder;
 import exceptions.UnmatchedPaletteException;
 import product.Brand;
 
+import java.util.Objects;
+
 public abstract class Guitar {
 	private Brand brand;
 	private String color;
@@ -40,9 +42,25 @@ public abstract class Guitar {
 	}
 
 	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Guitar guitar = (Guitar) o;
+		return stringsCount == guitar.stringsCount &&
+				brand == guitar.brand &&
+				Objects.equals(color, guitar.color);
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(brand, color, stringsCount);
+	}
+
+	@Override
 	public String toString() {
 		return "Guitar{"
-				+ brand +
+				+ brand + "#" + hashCode() +
 				", color='" + color + '\'' +
 				", " + stringsCount + "-string" +
 				'}';

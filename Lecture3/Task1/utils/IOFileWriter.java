@@ -5,13 +5,13 @@ import product.Product;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.Set;
 
 public class IOFileWriter {
 
-	private static final String PATH_NAME = "M://GitHub/products.txt";
+	private static final String PATH_NAME = "Task1/consignment.txt";
 
-	public static void storeProductsInFile(List<Product> products) {
+	public static void storeProductsInFile(Set<Product> products) {
 		try {
 			File listOfProducts = new File(PATH_NAME);
 			PrintWriter productOutput = new PrintWriter(listOfProducts);
