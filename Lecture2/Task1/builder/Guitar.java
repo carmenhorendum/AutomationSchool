@@ -2,16 +2,10 @@ package builder;
 
 import product.Brand;
 
-public class Guitar {
+public abstract class Guitar {
 	private Brand brand;
 	private String color;
 	private int stringsCount;
-
-	public Guitar() {
-		this.brand = brand;
-		this.color = color;
-		this.stringsCount = stringsCount;
-	}
 
 	public Brand getBrand() {
 		return brand;
@@ -38,7 +32,6 @@ public class Guitar {
 	}
 
 	public void play() {
-
 	}
 
 	@Override
