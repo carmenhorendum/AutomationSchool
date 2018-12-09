@@ -23,9 +23,6 @@ public class Calculator {
 			case DIVIDE:
 				total = division();
 				break;
-//			case QUIT:
-//				System.exit(0);
-//				break;
 			default:
 				System.out.println("Invalid operation!");
 		}
