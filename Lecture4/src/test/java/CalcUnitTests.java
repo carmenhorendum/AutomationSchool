@@ -1,21 +1,16 @@
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class CalcUnitTests {
 
-	@BeforeClass
-	public void oneTimeSetUp() {
-		System.out.print("Before Class");
+	@Test(dataProvider = "testAddDataProvider")
+	public void checkSum(double operand1, double operand2, double total) {
+		Calculator calculator = new Calculator(operand1, Operator.PLUS, operand2);
+		double result = calculator.makeCalculation();
+		System.out.println("Test Total: " + result);
+		Assert.assertEquals(result, total);
 	}
-
-        @Test(dataProvider = "testAddDataProvider")
-        public void checkSum(double operand1, double operand2, double total) {
-            Calculator calculator = new Calculator(operand1, Operator.PLUS, operand2);
-            System.out.println("Test Total: " + calculator.makeCalculation());
-            Assert.assertEquals(calculator.makeCalculation(), total);
-        }
 
 	@DataProvider(name = "testAddDataProvider")
 	public Object[][] parameterAddTestProvider() {
@@ -30,12 +25,13 @@ public class CalcUnitTests {
 		};
 	}
 
-        @Test(dataProvider = "testSubDataProvider")
-        public void checkDifference(double operand1, double operand2, double total) {
-            Calculator calculator = new Calculator(operand1, Operator.MINUS, operand2);
-            System.out.println("Test Total: " + calculator.makeCalculation());
-            Assert.assertEquals(calculator.makeCalculation(), total);
-        }
+	@Test(dataProvider = "testSubDataProvider")
+	public void checkDifference(double operand1, double operand2, double total) {
+		Calculator calculator = new Calculator(operand1, Operator.MINUS, operand2);
+		double result = calculator.makeCalculation();
+		System.out.println("Test Total: " + result);
+		Assert.assertEquals(result, total);
+	}
 
 	@DataProvider(name = "testSubDataProvider")
 	public Object[][] parameterSubTestProvider() {
@@ -50,12 +46,13 @@ public class CalcUnitTests {
 		};
 	}
 
-        @Test(dataProvider = "testMultDataProvider")
-        public void checkProduct(double operand1, double operand2, double total) {
-            Calculator calculator = new Calculator(operand1, Operator.MULTIPLY, operand2);
-            System.out.println("Test Total: " + calculator.makeCalculation());
-            Assert.assertEquals(calculator.makeCalculation(), total);
-        }
+	@Test(dataProvider = "testMultDataProvider")
+	public void checkProduct(double operand1, double operand2, double total) {
+		Calculator calculator = new Calculator(operand1, Operator.MULTIPLY, operand2);
+		double result = calculator.makeCalculation();
+		System.out.println("Test Total: " + result);
+		Assert.assertEquals(result, total);
+	}
 
 	@DataProvider(name = "testMultDataProvider")
 	public Object[][] parameterMultTestProvider() {
@@ -69,14 +66,13 @@ public class CalcUnitTests {
 		};
 	}
 
-        @Test(expectedExceptions = IllegalArgumentException.class,
-                expectedExceptionsMessageRegExp = "Error: Can't divide by zero!",
-                dataProvider = "testDivByZeroDataProvider")
-        public void checkDivisionByZero(double operand1, double operand2, double total)
-                throws IllegalArgumentException {
-            Calculator calculator = new Calculator(operand1, Operator.DIVIDE, operand2);
-            Assert.assertEquals(calculator.makeCalculation(), total);
-        }
+	@Test(expectedExceptions = IllegalArgumentException.class,
+			expectedExceptionsMessageRegExp = "Error: Can't divide by zero!",
+			dataProvider = "testDivByZeroDataProvider")
+	public void checkDivisionByZero(double operand1, double operand2, double total) {
+		Calculator calculator = new Calculator(operand1, Operator.DIVIDE, operand2);
+		Assert.assertEquals(calculator.makeCalculation(), total);
+	}
 
 	@DataProvider(name = "testDivByZeroDataProvider")
 	public Object[][] parametersDivByZeroTestProvider() {
@@ -87,13 +83,14 @@ public class CalcUnitTests {
 		};
 	}
 
-        @Test(dependsOnMethods = "checkDivisionByZero",
-                alwaysRun = true, dataProvider = "testDivDataProvider")
-        public void checkQuotient(double operand1, double operand2, double total) {
-            Calculator calculator = new Calculator(operand1, Operator.DIVIDE, operand2);
-            System.out.println("Test Total: " + calculator.makeCalculation());
-            Assert.assertEquals(calculator.makeCalculation(), total);
-        }
+	@Test(dependsOnMethods = "checkDivisionByZero",
+			alwaysRun = true, dataProvider = "testDivDataProvider")
+	public void checkQuotient(double operand1, double operand2, double total) {
+		Calculator calculator = new Calculator(operand1, Operator.DIVIDE, operand2);
+		double result = calculator.makeCalculation();
+		System.out.println("Test Total: " + result);
+		Assert.assertEquals(result, total);
+	}
 
 	@DataProvider(name = "testDivDataProvider")
 	public Object[][] parameterDivTestProvider() {
