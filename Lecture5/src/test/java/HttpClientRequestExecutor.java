@@ -27,7 +27,6 @@ public class HttpClientRequestExecutor implements RequestExecutor {
 					URI uriGet = new URIBuilder()
 							.setScheme(PROTOCOL)
 							.setHost(url)
-//                            .setPath(ENDPOINT)
 							.setParameter(entry.getKey(), entry.getValue())
 							.build();
 					HttpGet requestGet = new HttpGet(uriGet);
@@ -68,13 +67,13 @@ public class HttpClientRequestExecutor implements RequestExecutor {
 						}
 						return String.valueOf(bodyPut);
 					}
+					break;
 				}
-				break;
 			case DELETE:
 				return "";
 			default:
 				return "";
 		}
-		throw new IllegalArgumentException("Invalid parameters were passed to method!");
+		return "";
 	}
 }
