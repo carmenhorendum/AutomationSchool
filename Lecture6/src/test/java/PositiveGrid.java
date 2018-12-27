@@ -40,9 +40,9 @@ public class PositiveGrid extends BaseTest {
 	@Test(description = "Enters valid login data", dependsOnMethods = "openSignInPage")
 	public void loginAsAdmin() {
 		WebElement element = driver.findElement(By.id("inputEmail"));
-		element.sendKeys ("carmenhorendum@gmail.com");
+		element.sendKeys ("");
 		element = driver.findElement(By.name("password"));
-		element.sendKeys("distortion013");
+		element.sendKeys("");
 		element.submit();
 		assertEquals(driver.getTitle(), "Positive Grid");
 	}
