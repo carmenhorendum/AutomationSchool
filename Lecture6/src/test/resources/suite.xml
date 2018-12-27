@@ -1,4 +1,4 @@
-<suite name="Automation School - Make Positive Grid Order" verbose="10">
+<suite name="Automation School - Positive Grid Order" verbose="10">
     <parameter name="selenium.host" value="localhost" />
     <parameter name="selenium.port" value="3737" />
     <parameter name="selenium.browser" value="*chrome" />
