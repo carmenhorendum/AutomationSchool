@@ -1,0 +1,21 @@
+<suite name="Automation School - Make Positive Grid Order" verbose="10">
+    <parameter name="selenium.host" value="localhost" />
+    <parameter name="selenium.port" value="3737" />
+    <parameter name="selenium.browser" value="*chrome" />
+    <parameter name="selenium.url" value="https://www.positivegrid.com/" />
+
+    <test name="Make order" preserve-order="true">
+        <classes>
+            <class name="PositiveGrid">
+                <methods>
+                    <include name="launchSite" />
+                    <include name="openSignInPage" />
+                    <include name="loginAsUser" />
+                    <include name="navigateStore" />
+                    <include name="addProductToCart" />
+                    <include name="verifyProductInCart" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
