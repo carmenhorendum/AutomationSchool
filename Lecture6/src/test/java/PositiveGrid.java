@@ -2,6 +2,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -38,39 +40,40 @@ public class PositiveGrid extends BaseTest {
 	}
 
 	@Test(description = "Enters valid login data", dependsOnMethods = "openSignInPage")
-	public void loginAsAdmin() {
-		WebElement element = driver.findElement(By.id("inputEmail"));
-		element.sendKeys ("");
-		element = driver.findElement(By.name("password"));
+	public void loginAsUser() {
+		WebElement element = driver.findElement(By.name("username"));
+		element.sendKeys("");
+		element = driver.findElement(By.id("inputPassword"));
 		element.sendKeys("");
 		element.submit();
 		assertEquals(driver.getTitle(), "Positive Grid");
 	}
 
-	@Test(description = "Navigates to the store page", dependsOnMethods = "loginAsAdmin")
+	@Test(description = "Navigates to the store page", dependsOnMethods = "loginAsUser")
 	public void navigateStore() {
-		WebElement element = driver.findElement(By.xpath("//*[@id=\"menu\"]/div[1]/a[2]"));
-//		WebElement element = driver.findElement(By.className("nav-item-text"));
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		WebDriverWait wait = new WebDriverWait(driver, 18);
+		WebElement element = wait.until(
+				ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class = 'nav-item']")));
 		element.click();
-//		driver.get("https://www.positivegrid.com/plugins/");
 		assertEquals(driver.getTitle(), "Online Store - Desktop Plugins Software - Positive Grid");
 	}
 
 	@Test(description = "Adds product to cart", dependsOnMethods = "navigateStore")
 	public void addProductToCart() {
-		WebElement element = driver.findElement(By.cssSelector("#product-action-btn-container > input:nth-child(6)"));
+		WebDriverWait wait = new WebDriverWait(driver, 18);
+		WebElement element = wait.until(
+				ExpectedConditions.elementToBeClickable(
+						By.xpath(".//*[@data-product-id='193' and @value='ADD TO CART']")));
 		element.click();
+		wait.until(ExpectedConditions.titleIs("Positive Grid - Shopping Cart"));
 		assertEquals(driver.getTitle(), "Positive Grid - Shopping Cart");
 	}
 
 	@Test(description = "Verifies product in cart", dependsOnMethods = "addProductToCart")
 	public void verifyProductInCart() {
-		WebElement element = driver.findElement(By.className("cart_item_name"));
-		assertEquals(element.getText(), "BIAS AMP 2 Std");
+		WebDriverWait wait = new WebDriverWait(driver, 18);
+		WebElement element = wait.until(
+				ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.cart_item")));
+		assertEquals(element.getAttribute("data-product-id"), "193");
 	}
 }
