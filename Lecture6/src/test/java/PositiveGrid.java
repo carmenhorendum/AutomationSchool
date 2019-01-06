@@ -32,18 +32,18 @@ public class PositiveGrid extends BaseTest {
 
 	@Test(description = "Navigates to the login page")
 	public void openSignInPage() {
-		WebElement element = driver.findElement(By.className("nav-item-icon"));
+		WebElement element = driver.findElement(By.className(Locator.PROFILE_ICON));
 		element.click();
-		element = driver.findElement(By.className("data-login-PG-btn"));
+		element = driver.findElement(By.className(Locator.SIGNIN_BTN));
 		element.click();
 		assertEquals(driver.getTitle(), "Positive Grid");
 	}
 
 	@Test(description = "Enters valid login data", dependsOnMethods = "openSignInPage")
 	public void loginAsUser() {
-		WebElement element = driver.findElement(By.name("username"));
+		WebElement element = driver.findElement(By.name(Locator.USERNAME_FLD));
 		element.sendKeys("");
-		element = driver.findElement(By.id("inputPassword"));
+		element = driver.findElement(By.id(Locator.PASSWORD_FLD));
 		element.sendKeys("");
 		element.submit();
 		assertEquals(driver.getTitle(), "Positive Grid");
@@ -53,7 +53,7 @@ public class PositiveGrid extends BaseTest {
 	public void navigateStore() {
 		WebDriverWait wait = new WebDriverWait(driver, 18);
 		WebElement element = wait.until(
-				ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class = 'nav-item']")));
+				ExpectedConditions.elementToBeClickable(By.xpath(Locator.STORE_LNK)));
 		element.click();
 		assertEquals(driver.getTitle(), "Online Store - Desktop Plugins Software - Positive Grid");
 	}
@@ -62,8 +62,7 @@ public class PositiveGrid extends BaseTest {
 	public void addProductToCart() {
 		WebDriverWait wait = new WebDriverWait(driver, 18);
 		WebElement element = wait.until(
-				ExpectedConditions.elementToBeClickable(
-						By.xpath(".//*[@data-product-id='193' and @value='ADD TO CART']")));
+				ExpectedConditions.elementToBeClickable(By.xpath(Locator.ADD_TO_CART_BTN)));
 		element.click();
 		wait.until(ExpectedConditions.titleIs("Positive Grid - Shopping Cart"));
 		assertEquals(driver.getTitle(), "Positive Grid - Shopping Cart");
@@ -73,7 +72,7 @@ public class PositiveGrid extends BaseTest {
 	public void verifyProductInCart() {
 		WebDriverWait wait = new WebDriverWait(driver, 18);
 		WebElement element = wait.until(
-				ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.cart_item")));
+				ExpectedConditions.presenceOfElementLocated(By.cssSelector(Locator.CART_ITEM)));
 		assertEquals(element.getAttribute("data-product-id"), "193");
 	}
 }
