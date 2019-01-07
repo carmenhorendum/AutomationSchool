@@ -1,9 +1,8 @@
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Map;
 
 public class RestTemplateRequestExecutor implements RequestExecutor {
@@ -11,8 +10,7 @@ public class RestTemplateRequestExecutor implements RequestExecutor {
 	private static RestTemplate restTemplate = new RestTemplate();
 
 	@Override
-	public String makeRequest(String url, Method method, Map<String, String> params)
-			throws URISyntaxException, IOException {
+	public String makeRequest(String url, Method method, Map<String, String> params) {
 		switch (method) {
 			case GET:
 				for (Map.Entry<String, String> entry : params.entrySet()) {
@@ -32,7 +30,7 @@ public class RestTemplateRequestExecutor implements RequestExecutor {
 				}
 				break;
 			case POST:
-				break;
+				throw new NotImplementedException();
 			case PUT:
 				for (Map.Entry<String, String> entry : params.entrySet()) {
 					HttpHeaders headers = new HttpHeaders();
@@ -52,10 +50,10 @@ public class RestTemplateRequestExecutor implements RequestExecutor {
 				}
 				break;
 			case DELETE:
-				break;
+				throw new NotImplementedException();
 			default:
-				break;
+				throw new NotImplementedException();
 		}
-		return "";
+		throw new NotImplementedException();
 	}
 }
