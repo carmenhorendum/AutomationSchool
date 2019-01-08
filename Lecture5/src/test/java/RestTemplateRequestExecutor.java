@@ -2,7 +2,6 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.Map;
 
 public class RestTemplateRequestExecutor implements RequestExecutor {
