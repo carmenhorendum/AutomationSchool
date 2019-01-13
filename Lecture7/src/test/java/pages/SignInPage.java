@@ -5,10 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SignInPage {
-	private WebDriver driver;
+public class SignInPage extends Page {
 
 	@FindBy(name = Locator.USERNAME_FLD)
 	private WebElement usernameFld;
@@ -17,9 +15,9 @@ public class SignInPage {
 	private WebElement passwordFld;
 
 	public SignInPage(WebDriver driver) {
-		this.driver = driver;
+		super(driver);
 		PageFactory.initElements(this.driver, this);
-		new WebDriverWait(driver, 5)
+		getWait(driver, 5)
 				.until(ExpectedConditions.visibilityOf(usernameFld));
 	}
 
